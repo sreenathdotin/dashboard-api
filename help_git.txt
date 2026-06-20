@@ -2,3 +2,19 @@ git init
 pwd 
 ls 
 git rev-parse --show-toplevel. (to see which folder git initialized)
+
+
+
+
+git init
+git add
+git commit
+git status
+git log
+.gitignore
+
+git log --oneline
+
+git checkout <old_commit>
+git restore
+git diff
