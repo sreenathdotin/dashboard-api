@@ -12,7 +12,6 @@ app = FastAPI()
 
 @app.delete("/entry/{id}")
 def delete_entry(id : int):
-  print("This is delete request function")
   conn = get_connection()
   cursor = conn.cursor()
   cursor.execute("DELETE FROM dashboard WHERE id = ?",(id,))
