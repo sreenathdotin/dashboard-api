@@ -1,0 +1,27 @@
+14th Jun 2026
+#mkdir ~/api_learning
+#cd ~/api_learning
+#python3 -m venv venv
+#source venv/bin/activate
+#python3 -m pip install requests
+#python --version
+#pip --version
+#git --version
+#touch weather.py
+# code .  (to open vscode from terminal)
+#Use emojisense extenstion or Shift+command+spacebar for emoji popup
+#Option+Shift+8. for °C
+
+#FastAPI
+#python3 -m pip install fastapi uvicorn
+#touch main.py
+#uvicorn main:app --reload     (to run server)
+
+#python3 -m pip install python-dotenv.   -  (to install .env)
+
+
+#pip freeze > requirements.txt
+#pip install -r requirements.txt
+#python3 -m venv venv
+#source venv/bin/activate
+#pip install -r requirements.txt#

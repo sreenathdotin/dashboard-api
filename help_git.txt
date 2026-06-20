@@ -1,0 +1,4 @@
+git init
+pwd 
+ls 
+git rev-parse --show-toplevel. (to see which folder git initialized)
