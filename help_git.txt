@@ -18,7 +18,8 @@ git restore --source=HEAD~3 main.py.
 git add main.py
 git commit -m "Restored main.py to version before print statements"
 
-
+Discard loal edits:
+git restore --staged main.py
 
 git --version
 git init

@@ -1,0 +1,11 @@
+✓ FastAPI
+✓ SQLite
+✓ Pydantic
+✓ CRUD APIs
+✓ Authentication
+✓ Search
+✓ Statistics
+✓ Project structure
+✓ .env
+✓ requirements.txt
+✓ Git

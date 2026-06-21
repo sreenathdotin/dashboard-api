@@ -11,6 +11,7 @@ from auth import verify_api_key
 app = FastAPI()
 
 print("Testing branch")
+print("Testing GitHub")
 
 @app.delete("/entry/{id}")
 def delete_entry(id : int):
