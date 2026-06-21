@@ -11,6 +11,7 @@ from auth import verify_api_key
 app = FastAPI()
 
 print("Hello")
+print("Hello World")
 
 @app.delete("/entry/{id}")
 def delete_entry(id : int):
