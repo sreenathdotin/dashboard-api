@@ -10,10 +10,6 @@ from auth import verify_api_key
 
 app = FastAPI()
 
-print("Hello")
-print("Hello World")
-pirnt("python project")
-
 @app.delete("/entry/{id}")
 def delete_entry(id : int):
   conn = get_connection()
