@@ -1,23 +1,27 @@
+
+
+git --version
 git init
 pwd 
 ls 
 git rev-parse --show-toplevel. (to see which folder git initialized)
 
-
+cd ~
+rm -rf .git.  (This removes git directory)
 
 
 git init
-git add
-git commit
+git add .
+git commit -m "Your message here"
 git status
-git log
-.gitignore
+git log --oneline
+.gitignore  (is a file that contains file names which are ignored)
 
 git log --oneline
 
 git checkout <old_commit>
 git restore
-git diff
+
 
 #Restoring a file
 git diff HEAD~1 HEAD -- main.py
