@@ -1,0 +1,11 @@
+pip install "python-jose[cryptography]"
+
+The zsh shell on your Mac interprets square brackets [] as file-matching glob patterns instead of literal text. Since no files matching that pattern exist in your current folder, the terminal throws a no matches found error.The SolutionYou need to put quotation marks around the package name so the shell treats it as a normal string.Run this command in your terminal:
+bash
+
+pip install "python-jose[cryptography]"
+
+
+Alternatively, you can use single quotes:
+bash
+python3 -m pip install 'python-jose[cryptography]'
