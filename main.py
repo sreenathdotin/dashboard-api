@@ -12,6 +12,7 @@ app = FastAPI()
 
 print("Hello")
 print("Hello World")
+pirnt("python project")
 
 @app.delete("/entry/{id}")
 def delete_entry(id : int):
