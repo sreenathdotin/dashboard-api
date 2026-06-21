@@ -18,3 +18,10 @@ git log --oneline
 git checkout <old_commit>
 git restore
 git diff
+
+#Restoring a file
+git diff HEAD~1 HEAD -- main.py
+git checkout HEAD~1 -- main.py
+git status
+git add main.py
+git commit - m "Reversed main.py to previous version"

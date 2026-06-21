@@ -1,0 +1,21 @@
+#This is used for app portability to other laptops or devices
+#pip freeze > requirements.txt
+#pip install -r requirements.txt
+
+#pip freeze > requirements.txt
+#pip install -r requirements.txt-   (After copying the app to other devices, 
+    #installs dependencies listed in requirement file
+#python3 -m venv venv
+#source venv/bin/activate
+#pip install -r requirements.txt
+
+
+#Pitfalls to AvoidGlobal Environment Clutter: If you are not using a virtual environment (like venv or conda), pip freeze      #will pull in every single package installed on your computer. This creates a massive, bloated file full of  #"garbage" your project doesn't actually need.Always Use a Virtual Environment: Create a virtual environment before running the command so you only export project-specific packages:bashpython -m venv venv
+#source venv/bin/activate  # On Windows use: venv\Scripts\activate
+#pip install <your-needed-packages>
+#pip freeze > requirements.txt
+
+#Pro-Tip AlternativesIf you forgot to use a virtual environment 
+  #and want to generate a clean file containing only the packages your code 
+  #actually imports, use pipreqs instead.bashpip install pipreqs
+#pipreqs /path/to/your/project
