@@ -1,0 +1,66 @@
+
+
+
+@app.get("/hello")
+def hello(current_user: str = Depends(get_current_user)):
+  return {"message":"Hello from fastapi  - Dashboard API is running"}
+
+,dependencies=[Depends(verify_api_key)]
+    _ : str = Depends(verify_api_key)
+    _ : str = Depends(verify_api_key)
+    @app.delete("/entry/{entry_id}")
+def delete_entry(entry_id :int ):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM dashboard WHERE id=?",(entry_id,))
+    row = cursor.fetchone()
+    if row is not None:
+      cursor.execute("DELETE FROM dashboard WHERE id =?",(entry_id,))
+      conn.commit()
+      conn.close()
+      return {"message": f"Entry {entry_id} deleted"}
+    else:
+      conn.close()
+      raise HTTPException(status_code=404, detail = f"Entry {entry_id}  not found",)
+
+
+
+
+
+
+      @app.put("/entry/{entry_id}")
+def update_entry(entry_id : int,entry : DashboardEntry):
+  current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+  conn=get_connection()
+  cursor = conn.cursor()
+  cursor.execute("SELECT * FROM dashboard WHERE id = ?",(entry_id,))
+  row = cursor.fetchone()
+  if row is not None:
+    cursor.execute("UPDATE dashboard SET timestamp = ?,temperature =?, ethereum_price 
+=? , joke =? WHERE id = ? ",
+(current_time,entry.temperature,entry.ethereum_price,entry.joke, entry_id))
+    conn.commit()
+    conn.close()
+    return{"message": f"{entry_id} has been updated"}
+  else:
+    conn.close()
+    return {"message": f"{entry_id} not found"}
+
+
+
+
+
+
+
+
+@app.post("/entry",status_code=201)
+def create_entry(entry: DashboardEntry):
+  conn = get_connection()
+  cursor = conn.cursor()
+  timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+  cursor.execute("""INSERT INTO dashboard (timestamp,temperature,ethereum_price,joke) 
+VALUES(?,?,?,?)""",
+  (timestamp,entry.temperature,entry.ethereum_price,entry.joke))
+  conn.commit()
+  conn.close()
+  return {"message": "Entry created successfully"}
