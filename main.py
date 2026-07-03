@@ -186,7 +186,6 @@ def execute_query(query,params):
 #def entries(
 @app.get("/entries")
 def get_entries(
-    current_user: str = Depends(get_current_user),
     limit : int = 5,
     offset : int = 0,
     min_temp: float | None = None, 
