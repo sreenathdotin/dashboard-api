@@ -63,6 +63,7 @@ Settings:
     https://dashboard-api.onrender.com/docs
 
 
+git config --global core.pager cat
 
 
 
