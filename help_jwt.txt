@@ -9,3 +9,11 @@ pip install "python-jose[cryptography]"
 Alternatively, you can use single quotes:
 bash
 python3 -m pip install 'python-jose[cryptography]'
+
+pip install --upgrade pip setuptools wheel
+
+rust update
+pip install "python-jose[cryptography]"
+pip install "passlib[bcrypt]"
+
+pip freeze > requirements.txt

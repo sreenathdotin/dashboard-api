@@ -25,3 +25,16 @@
 #python3 -m venv venv
 #source venv/bin/activate
 #pip install -r requirements.txt#
+
+
+#which python
+#which uvicorn
+#pip list | grep jose
+
+#Help for Deployment
+#Start Render
+pip freeze > requirements.txt
+
+git add requirements.txt
+git commit -m "Updated requirements for deployment"
+git push

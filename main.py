@@ -1,17 +1,67 @@
 from fastapi import FastAPI,HTTPException,status,Response,Depends,Header
 from pydantic import BaseModel
-from datetime import datetime
+from datetime import datetime,timedelta
 import sqlite3
 from fastapi import HTTPException
 from typing import List
 from database import get_connection
 from models import DashboardResponse,DashboardEntry,DashboardStats
 from auth import verify_api_key
+from models import LoginRequest,Token
+from auth import create_access_token
+from auth import get_current_user
+from fastapi.security import OAuth2PasswordRequestForm
+from jose import jwt
+from database import init_db
+from auth import hash_password
+from database import get_user
+from auth import verify_password
+
+
 
 app = FastAPI()
+init_db()
+
+@app.get("/")
+def home():
+    return {
+        "message": "Dashboard API is running!",
+        "docs": "/docs"
+    }
 
 print("Testing branch")
 print("Testing GitHub")
+
+@app.get("/profile")
+def profile(user: str= Depends(get_current_user)):
+  return{
+    "username" : user
+  }
+
+@app.post("/login",response_model=Token)
+def login(form_data: OAuth2PasswordRequestForm = Depends()):
+
+  user = get_user(form_data.username)
+  if user is None:
+    raise HTTPException(
+      status_code = 401,
+      detail = "Invalid username or password"
+    )
+  if not verify_password(
+    form_data.password,
+    user[1]
+    ):
+    raise HTTPException(
+      status_code = 401,
+      detail = "Invalid username or password"
+    )
+  token = create_access_token(
+    {"sub": user[0]}
+  )
+  return {
+    "access_token": token,
+    "token_type":"bearer"
+  }
 
 @app.delete("/entry/{id}")
 def delete_entry(id : int):
