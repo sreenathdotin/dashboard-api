@@ -1,3 +1,6 @@
+
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTc4MzA0Mzg1NH0.0nw2iFM7t3ATIQQ2Dt5wwVuqQ3ctTlhIPgVrAGXROU4"
+
 14th Jun 2026
 #mkdir ~/api_learning
 #cd ~/api_learning

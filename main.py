@@ -16,7 +16,7 @@ from database import init_db
 from auth import hash_password
 from database import get_user
 from auth import verify_password
-
+from auth import get_current_user
 
 
 app = FastAPI()
@@ -182,8 +182,11 @@ def execute_query(query,params):
   return [row_to_dict(row)for row in rows]
 
 
-@app.get("/entries",response_model = List[DashboardResponse])
-def entries(
+#@app.get("/entries",response_model = List[DashboardResponse])
+#def entries(
+@app.get("/entries")
+def get_entries(
+    current_user: str = Depends(get_current_user),
     limit : int = 5,
     offset : int = 0,
     min_temp: float | None = None, 
@@ -191,36 +194,36 @@ def entries(
     sort: str ="id",
     _ : str = Depends(verify_api_key)
     ):
-  allowed_sorts = [
+    allowed_sorts = [
     "id",
     "temperature",
     "ethereum_price",
     "timestamp"
-  ]
+    ]
   
-  if sort not in allowed_sorts:
-    sort = "id"
+    if sort not in allowed_sorts:
+      sort = "id"
 
-  if min_temp is not None and max_temp is not None:
-    query = (f"""SELECT * FROM dashboard  WHERE temperature >= ? AND temperature <= ? ORDER BY {sort} DESC LIMIT ? OFFSET ?""")
-    params = (min_temp,max_temp,limit,offset)
+    if min_temp is not None and max_temp is not None:
+      query = (f"""SELECT * FROM dashboard  WHERE temperature >= ? AND temperature <= ? ORDER BY {sort} DESC LIMIT ? OFFSET ?""")
+      params = (min_temp,max_temp,limit,offset)
     
   
-  elif min_temp is not None and max_temp is None:
-    query = (f"""SELECT * FROM dashboard  WHERE temperature >= ? ORDER BY {sort} DESC LIMIT ? OFFSET ?""")
-    params = (min_temp,limit,offset)
+    elif min_temp is not None and max_temp is None:
+      query = (f"""SELECT * FROM dashboard  WHERE temperature >= ? ORDER BY {sort} DESC LIMIT ? OFFSET ?""")
+      params = (min_temp,limit,offset)
     
 
-  elif max_temp is not None and min_temp is None:
-    query=(f"""SELECT * FROM dashboard  WHERE temperature <= ? ORDER BY {sort} DESC LIMIT ? OFFSET ?""")
-    params = (max_temp,limit,offset)
+    elif max_temp is not None and min_temp is None:
+        query=(f"""SELECT * FROM dashboard  WHERE temperature <= ? ORDER BY {sort} DESC LIMIT ? OFFSET ?""")
+        params = (max_temp,limit,offset)
     
 
-  else:
-    query = (f"""SELECT * FROM dashboard   ORDER BY {sort} DESC LIMIT ? OFFSET ?""")
-    params = (limit,offset)
+    else:
+      query = (f"""SELECT * FROM dashboard   ORDER BY {sort} DESC LIMIT ? OFFSET ?""")
+      params = (limit,offset)
   
-  return execute_query(query,params)
+    return execute_query(query,params)
     
 
 
@@ -263,7 +266,7 @@ def delete_entry(entry_id :int ):
     else:
       conn.close()
       raise HTTPException(status_code=404, detail = f"Entry {entry_id}  not found",)
-      #return {"message": f"{entry_id} not found"}
+      
 
    
 @app.put("/entry/{entry_id}")
