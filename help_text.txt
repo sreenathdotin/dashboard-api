@@ -65,7 +65,23 @@ Settings:
 
 git config --global core.pager cat
 
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+pytest
+pip install pytest
+pip install httpx
+pip freeze > requirements.txt
 
+git add .
+git commit -m "Added pytest dependencies"
+git push
+
+create folder tests
+  create file test_main.py
+find . -maxdepth 2 ( To find if main.py is in project folder)
+import main (in python3 terminal)
+
+which pytest
+python -m pytest
 
 
 
