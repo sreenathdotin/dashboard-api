@@ -13,6 +13,55 @@ def get_token():
     assert response.status_code == 200
     return response.json()["access_token"]
 
+def test_stats():
+    token = get_token()
+    response = client.get(
+        "/stats",
+        headers = {
+            "Authorization": f"Bearer {token}"
+        }
+    )
+    assert response.status_code ==200
+    data = response.json()
+    assert "total_entries" in data
+
+def test_search():
+    token = get_token()
+    response = client.get(
+        "/search?keyword=pytest",
+        headers={
+            "Authorization": f"Bearer {token}"
+        }
+    )
+    assert response.status_code == 200
+    data = response.json()
+    assert isinstance(data,list)
+
+def test_latest_entry():
+    token = get_token()
+    response = client.get(
+        "/latest",
+        headers = {
+            "Authorization": f"Bearer {token}"
+        }
+    )
+    assert response.status_code == 200
+    data = response.json()
+    assert "temperature" in data
+    assert "ethereum_price" in data
+    assert "joke" in data
+
+def test_get_entries():
+    token = get_token()
+    response = client.get(
+        "/entries",
+        headers = {
+            "Authorization": f"Bearer {token}"
+        }
+    )
+    assert response.status_code == 200
+    data = response.json()
+    assert isinstance(data,list)
 
 def test_create_entry():
     token = get_token()
