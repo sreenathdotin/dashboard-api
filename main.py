@@ -10,7 +10,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from database import init_db
 from database import get_user
 from auth import verify_password
-
+from logger import logger
 
 
 app = FastAPI()
@@ -37,6 +37,7 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
 
   user = get_user(form_data.username)
   if user is None:
+    logger.warning(f"Invalid login attempt for username {form_data.username}")
     raise HTTPException(
       status_code = 401,
       detail = "Invalid username or password"
@@ -45,6 +46,7 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
     form_data.password,
     user[1]
     ):
+    logger.warning(f"Invalid login attempt for username {form_data.username}")
     raise HTTPException(
       status_code = 401,
       detail = "Invalid username or password"
@@ -52,6 +54,7 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
   token = create_access_token(
     {"sub": user[0]}
   )
+  logger.info(f"User {user[0]} logged in")
   return {
     "access_token": token,
     "token_type":"bearer"
@@ -69,6 +72,7 @@ def delete_entry(id : int,current_user: str = Depends(get_current_user)):
       detail = f"Entry {id} not found "
     )
   conn.commit()
+  logger.info(f"Entry {id} deleted by {current_user}")
   conn.close()
   return {"message" : "Entry deleted successfully"}
 
@@ -85,6 +89,7 @@ def update_entry(id: int, entry: DashboardEntry,current_user: str = Depends(get_
       detail=f"Entry{id}not found"
     )
   conn.commit()
+  logger.info(f"Entry {id} updated by {current_user}")
   conn.close()
   return {"message": "Entry updated Successfully"}
 
@@ -221,11 +226,13 @@ def create_entry(entry: DashboardEntry,
     cursor.execute("""INSERT INTO dashboard (timestamp,temperature,ethereum_price,joke) 
       VALUES(?,?,?,?) """, (current_time,entry.temperature,entry.ethereum_price,entry.joke))
     conn.commit()
+    logger.info(f"New dashboard entry created by {current_user}")
     conn.close()
     return {"message": "Entry added Successfully"}
   except HTTPException:
     raise
   except Exception as e:
+    logger.exception("Unexpected error")
     print(f"Unexpected error: {e}")
     raise HTTPException(
       status_code = status.HTTP_500_INTERNAL_SERVER_ERROR,
