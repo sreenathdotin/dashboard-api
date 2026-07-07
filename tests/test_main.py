@@ -13,6 +13,92 @@ def get_token():
     assert response.status_code == 200
     return response.json()["access_token"]
 
+def test_update_entry():
+    token = get_token()
+    response = client.post(
+        "/entry",
+        headers = {"Authorization": f"Bearer {token}"},
+        json = {
+            "temperature": 20,
+            "ethereum_price" : 2000,
+            "joke": "Test Update entry"
+        }
+    )
+
+    entries = client.get(
+        "/entries",
+        headers ={"Authorization": f"Bearer {token}"}
+    )
+
+    entry_id = entries.json()[0]["id"]
+
+    response = client.put(f"/entry/{entry_id}",
+        headers = {"Authorization": f"Bearer {token}"},
+        json = {"temperature" : 40,
+                "ethereum_price": 5000,
+                "joke": "test_update_entry"}     
+        )
+
+    assert response.status_code == 200
+
+def test_delete_invalid_entry():
+    token = get_token()
+    response = client.delete(
+        "/entry/999999",
+        headers = {
+            "Authorization" : f"Bearer {token}"
+        }
+    )
+    assert response.status_code == 404
+
+
+def test_delete_entry():
+    token = get_token()
+    create = client.post(
+        "/entry",
+        headers = {
+            "Authorization": f"Bearer {token}"},
+            json ={
+                "temperature" : 28,
+                "ethereum_price": 3100,
+                "joke": "Delete me"
+            }
+        
+    )
+    entries = client.get(
+        "/entries",
+        headers = {"Authorization": f"Bearer {token}"}
+    )
+    entry_id = entries.json()[0]["id"]
+
+    response = client.delete(
+            f"/entry/{entry_id}",
+            headers = {"Authorization": f"Bearer {token}"}
+    )
+    assert response.status_code == 200
+
+
+def test_invalid_entry():
+    token = get_token()
+    response = client.get(
+        "/entry/9999999",
+        headers = {
+            "Authorization": f"Bearer {token}"
+        }
+    )
+    assert response.status_code == 404
+
+def test_create_without_token():
+    response = client.post(
+        "/entry",
+        json = {
+            "temperature": 25,
+            "ethereum_price": 3000,
+            "joke": "No token"
+        }
+    )
+    assert response.status_code == 401
+
 def test_stats():
     token = get_token()
     response = client.get(
@@ -76,7 +162,7 @@ def test_create_entry():
             "joke": "pytest created this"
         }
     )
-    print(response.json())
+    #print(response.json())
     assert response.status_code == 201
 
 def test_home():
