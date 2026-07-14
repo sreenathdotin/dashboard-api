@@ -1,5 +1,6 @@
 name: Run Tests
-
+env:
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
 on:
   push:
     branches:
