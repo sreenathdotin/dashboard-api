@@ -1,0 +1,68 @@
+2026-07-14 10:12:37,308 INFO GET /search Status=200 Time=0.0065s
+2026-07-14 10:12:37,750 INFO User admin logged in
+2026-07-14 10:12:37,753 INFO POST /login Status=200 Time=0.4393s
+2026-07-14 10:12:37,764 INFO GET /entries Status=200 Time=0.0070s
+2026-07-14 10:12:38,131 INFO User admin logged in
+2026-07-14 10:12:38,132 INFO POST /login Status=200 Time=0.3632s
+2026-07-14 10:12:38,139 INFO GET /entries Status=200 Time=0.0029s
+2026-07-14 10:12:38,496 INFO User admin logged in
+2026-07-14 10:12:38,497 INFO POST /login Status=200 Time=0.3505s
+2026-07-14 10:12:38,503 INFO GET /entries Status=200 Time=0.0026s
+2026-07-14 10:12:38,849 INFO User admin logged in
+2026-07-14 10:12:38,850 INFO POST /login Status=200 Time=0.3415s
+2026-07-14 10:12:38,856 INFO GET /entries Status=200 Time=0.0025s
+2026-07-14 10:12:39,198 INFO User admin logged in
+2026-07-14 10:12:39,199 INFO POST /login Status=200 Time=0.3384s
+2026-07-14 10:12:39,206 INFO PUT /entry/999999 Status=404 Time=0.0032s
+2026-07-14 10:12:39,543 INFO User admin logged in
+2026-07-14 10:12:39,544 INFO POST /login Status=200 Time=0.3334s
+2026-07-14 10:12:39,553 INFO New dashboard entry created by admin
+2026-07-14 10:12:39,554 INFO POST /entry Status=201 Time=0.0062s
+2026-07-14 10:12:39,560 INFO GET /entries Status=200 Time=0.0027s
+2026-07-14 10:12:39,567 INFO Entry 89 updated by admin
+2026-07-14 10:12:39,568 INFO PUT /entry/89 Status=200 Time=0.0050s
+2026-07-14 10:12:39,574 INFO PUT /entry/{entry_id} Status=401 Time=0.0009s
+2026-07-14 10:12:39,910 INFO User admin logged in
+2026-07-14 10:12:39,911 INFO POST /login Status=200 Time=0.3323s
+2026-07-14 10:12:39,917 INFO DELETE /entry/999999 Status=404 Time=0.0026s
+2026-07-14 10:12:40,257 INFO User admin logged in
+2026-07-14 10:12:40,258 INFO POST /login Status=200 Time=0.3365s
+2026-07-14 10:12:40,266 INFO New dashboard entry created by admin
+2026-07-14 10:12:40,267 INFO POST /entry Status=201 Time=0.0056s
+2026-07-14 10:12:40,272 INFO GET /entries Status=200 Time=0.0024s
+2026-07-14 10:12:40,280 INFO Entry 90 deleted by admin
+2026-07-14 10:12:40,281 INFO DELETE /entry/90 Status=200 Time=0.0043s
+2026-07-14 10:12:40,286 INFO DELETE /entry/{entry_id} Status=401 Time=0.0005s
+2026-07-14 10:12:40,623 INFO User admin logged in
+2026-07-14 10:12:40,624 INFO POST /login Status=200 Time=0.3338s
+2026-07-14 10:12:40,631 INFO GET /entry/9999999 Status=404 Time=0.0039s
+2026-07-14 10:12:40,636 INFO POST /entry Status=401 Time=0.0009s
+2026-07-14 10:12:40,971 INFO User admin logged in
+2026-07-14 10:12:40,972 INFO POST /login Status=200 Time=0.3306s
+2026-07-14 10:12:40,978 INFO GET /stats Status=200 Time=0.0038s
+2026-07-14 10:12:40,984 INFO GET /stats Status=401 Time=0.0005s
+2026-07-14 10:12:41,323 INFO User admin logged in
+2026-07-14 10:12:41,324 INFO POST /login Status=200 Time=0.3357s
+2026-07-14 10:12:41,329 INFO GET /search Status=200 Time=0.0022s
+2026-07-14 10:12:41,666 INFO User admin logged in
+2026-07-14 10:12:41,667 INFO POST /login Status=200 Time=0.3329s
+2026-07-14 10:12:41,673 INFO GET /latest Status=200 Time=0.0029s
+2026-07-14 10:12:41,679 INFO GET /latest Status=401 Time=0.0005s
+2026-07-14 10:12:42,013 INFO User admin logged in
+2026-07-14 10:12:42,014 INFO POST /login Status=200 Time=0.3308s
+2026-07-14 10:12:42,019 INFO GET /entries Status=200 Time=0.0025s
+2026-07-14 10:12:42,025 INFO GET /entries Status=401 Time=0.0006s
+2026-07-14 10:12:42,363 INFO User admin logged in
+2026-07-14 10:12:42,364 INFO POST /login Status=200 Time=0.3343s
+2026-07-14 10:12:42,371 INFO New dashboard entry created by admin
+2026-07-14 10:12:42,372 INFO POST /entry Status=201 Time=0.0048s
+2026-07-14 10:12:42,378 INFO POST /entry Status=401 Time=0.0008s
+2026-07-14 10:12:42,384 INFO GET / Status=200 Time=0.0013s
+2026-07-14 10:12:42,719 INFO User admin logged in
+2026-07-14 10:12:42,720 INFO POST /login Status=200 Time=0.3324s
+2026-07-14 10:12:43,056 INFO User admin logged in
+2026-07-14 10:12:43,057 INFO POST /login Status=200 Time=0.3324s
+2026-07-14 10:12:43,063 INFO GET /profile Status=200 Time=0.0020s
+2026-07-14 10:12:43,068 INFO GET /profile Status=401 Time=0.0005s
+2026-07-14 10:12:43,411 WARNING Invalid login attempt for username admin
+2026-07-14 10:12:43,411 INFO POST /login Status=401 Time=0.3389s

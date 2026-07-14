@@ -1,8 +1,38 @@
 import logging
+from logging.handlers import RotatingFileHandler
 
-logging.basicConfig(
-  filename = "dashbord.log",
-  level = logging.INFO,
-  format = "%(asctime)s %(levelname)s %(message)s"
+handler = RotatingFileHandler(
+  "dashboard.log",
+  maxBytes = 1_000_000,
+  backupCount=5
 )
-logger = logging.getLogger(__name__)
+
+formatter = logging.Formatter(
+  "%(asctime)s %(levelname)s %(message)s"
+)
+
+handler.setFormatter(formatter)
+
+logger= logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+logger.addHandler(handler)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

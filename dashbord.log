@@ -4,3 +4,12 @@
 2026-07-07 14:07:34,544 INFO New dashboard entry created by admin
 2026-07-07 14:09:04,682 INFO Entry 88 updated by admin
 2026-07-07 14:09:42,035 INFO Entry 88 deleted by admin
+2026-07-08 14:06:43,856 INFO GET/docsStatus = 200Time = 0.0182s
+2026-07-08 14:06:44,644 INFO GET/openapi.jsonStatus = 200Time = 0.0488s
+2026-07-08 14:07:08,142 INFO User admin logged in
+2026-07-08 14:07:08,144 INFO POST/loginStatus = 200Time = 0.4490s
+2026-07-08 14:07:22,289 INFO User admin logged in
+2026-07-08 14:07:22,290 INFO POST/loginStatus = 200Time = 0.3493s
+2026-07-08 14:07:35,945 INFO GET/profileStatus = 200Time = 0.0087s
+2026-07-08 14:07:56,733 INFO GET/statsStatus = 200Time = 0.0112s
+2026-07-08 14:08:08,088 INFO GET/entriesStatus = 200Time = 0.0071s

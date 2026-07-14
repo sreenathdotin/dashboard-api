@@ -11,10 +11,26 @@ from database import init_db
 from database import get_user
 from auth import verify_password
 from logger import logger
+from fastapi import Request
+import time
+
 
 
 app = FastAPI()
 init_db()
+
+@app.middleware("http")
+async def log_requests(request: Request,call_next):
+  start_time = time.time()
+  response = await call_next(request)
+  process_time = time.time() - start_time
+  logger.info(
+    f"{request.method} "
+    f"{request.url.path} "
+    f"Status={response.status_code} "
+    f"Time={process_time:.4f}s"
+  )
+  return response
 
 @app.get("/")
 def home():
@@ -239,8 +255,5 @@ def create_entry(entry: DashboardEntry,
       detail = f"Database error: {str(e)}"
       )
   
-
-
-# Response API
 
 
