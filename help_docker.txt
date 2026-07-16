@@ -1,0 +1,140 @@
+
+https://github.com/sreenathdotin/dashboard-api
+
+  Click :  code
+
+  it will show tabs Local, Codespaces:
+  Select Codespaces
+
+  Then click: Create codespace on main
+
+  GitHub will prepare a linux development environment 
+  it will take 1-3 main
+
+  VS Code will open with terminal at the bottom
+
+  docker --version
+    Expected output :  Docker version 27.x.x
+
+  docker ps 
+    Should return 
+        CONTAINER ID   IMAGE   COMMAND   CREATED   STATUS   PORTS   NAMES
+
+  create file Dockerfile:
+    touch Dockerfile
+
+        Paste below code in Dockerfile:
+        FROM python:3.12-slim
+        WORKDIR /app
+        COPY requirements.txt .
+        RUN pip install --no-cache-dir -r requirements.txt
+        COPY . .
+        EXPOSE 8000
+        CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+  
+    touch dockerignore
+        paste below file and folders:
+          venv/
+          __pycache__/
+          .pytest_cache/
+          .git/
+          dashboard.log
+          *.pyc
+
+docker build -t dashboard-api .
+
+docker images
+
+docker run -d -p 8000:8000 --name dashboard-container dashboard-api
+
+docker ps
+
+docker ps -a
+
+docker logs dashboard-container
+
+
+In Terminal Ports-  
+  open PORTS tab → 8000 → Open in Browser
+
+You should arrive at:
+https://<codespace-name>-8000.app.github.dev/docs
+which should show your Swagger UI.
+
+Verify endpoint in Codespace terminal:
+curl http://localhost:8000/
+
+@sreenathdotin ➜ /workspaces/dashboard-api (main) $ curl http://localhost:8000/
+{"message":"Dashboard API is running!","docs":"/docs"}@sreenathdotin ➜ /workspaces/dashboard-api (main) $
+
+docker run -d -p 8000:8000 --name dashboard-container dashboard-api
+docker ps
+
+
+docker exec -it dashboard-container bash
+
+
+docker stop dashboard-container
+
+
+docker rm dashboard-container
+
+
+docker rmi dashboard-api
+
+docker stats dashboard-container
+
+
+_______&&&&&&&_________&&&&&&&&&&&&&&&____&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&__________
+
+
+#Finding macbook spec
+system_profiler SPHardwareDataType | grep "Model Identifier"
+
+uname -m
+
+#To find if brew is present
+brew --version
+
+brew install docker
+brew install colima
+
+
+#Docker and colima location
+which docker
+/usr/local/bin/docker
+
+
+which colima
+/usr/local/bin/colima
+
+#Colima needs QEMU to create the Linux VM on your machine
+
+
+brew install qemu
+
+colima start
+
+
+
+
+
+
+docker run hello-world
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+
+colima status
+Expected Output:
+INFO[0000] colima is running
+INFO[0000] arch: x86_64
+INFO[0000] runtime: docker
+
+
+brew install docker
+brew install colima
+brew install qemu
+which qemu-img
+colima start
+docker run hello-world

@@ -50,3 +50,21 @@ git checkout HEAD~1 -- main.py
 git status
 git add main.py
 git commit - m "Reversed main.py to previous version"
+
+#To remove the pushed log file from git
+git rm --cached dashboard.log
+git add .gitignore
+git commit -m "Ignore log files"
+git push
+
+
+
+GitHub Repository
+→ Settings
+→ Secrets and variables
+→ Actions
+→ New repository secret-  (Usethe value of "SECRET_KEY=" from env file)
+
+git add .github/workflows/tests.yml
+git commit -m "Added SECRET_KEY for GitHub Actions"
+git push
